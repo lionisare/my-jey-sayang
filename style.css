@@ -1,0 +1,411 @@
+/* ==========================================
+   1. VARIABEL WARNA & RESETS
+   ========================================== */
+:root {
+  --bg-color: #f8f9fa;
+  --card-bg: #ffffff;
+  --text-color: #2b2d42;
+  --text-light: #ffffff;
+  --accent-color: #ff9aa2;
+  --accent-hover: #ff7081;
+  --glass-bg: rgba(255, 255, 255, 0.15);
+  --glass-border: rgba(255, 255, 255, 0.3);
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="dark"] {
+  --bg-color: #0f172a;
+  --card-bg: #1e293b;
+  --text-color: #f8fafc;
+  --glass-bg: rgba(15, 23, 42, 0.5);
+  --glass-border: rgba(255, 255, 255, 0.15);
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  scroll-behavior: smooth;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  overflow-x: hidden;
+}
+
+#fireworksCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 99;
+}
+
+/* ==========================================
+   2. NAVBAR TRANSPARAN (GLASSMORPHISM)
+   ========================================== */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 5%;
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--glass-border);
+  z-index: 100;
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--text-light);
+  letter-spacing: 0.5px;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 25px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-light);
+  font-weight: 500;
+  font-size: 0.95rem;
+  opacity: 0.85;
+  transition: opacity 0.2s ease;
+}
+
+.nav-links a:hover {
+  opacity: 1;
+}
+
+.btn-icon {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  color: var(--text-light);
+  padding: 6px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+/* ==========================================
+   3. HERO SECTION & VIDEO SLIDER
+   ========================================== */
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 0 8%;
+  overflow: hidden;
+}
+
+/* Container Video Latar Belakang */
+.video-slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+}
+
+/* Setiap Video Disusun Bertumpuk */
+.slide-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+/* Video Aktif */
+.slide-video.active {
+  opacity: 1;
+}
+
+/* Overlay Transparan Gelap */
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.6) 20%, rgba(0, 0, 0, 0.2) 100%);
+  z-index: -1;
+}
+
+/* Teks dan Konten Hero */
+.hero-content {
+  max-width: 600px;
+  color: #ffffff;
+}
+
+.hero-tagline {
+  font-size: 0.85rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  opacity: 0.9;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.hero-title {
+  font-size: 3.2rem;
+  line-height: 1.15;
+  margin-bottom: 15px;
+  font-weight: 800;
+}
+
+.hero-subtitle {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  opacity: 0.9;
+  margin-bottom: 28px;
+}
+
+/* Tombol Kapsul Modern */
+.hero-buttons {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 12px 28px;
+  border-radius: 30px;
+  border: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.btn:active {
+  transform: scale(0.95);
+}
+
+.primary-btn {
+  background-color: var(--accent-color);
+  color: #ffffff;
+}
+
+.primary-btn:hover {
+  background-color: var(--accent-hover);
+}
+
+.secondary-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ==========================================
+   4. FLOATING CARD & SLIDER DOTS
+   ========================================== */
+/* Kartu Melayang di Pojok Kanan Atas */
+.floating-card {
+  position: absolute;
+  top: 22%;
+  right: 6%;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 16px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #ffffff;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease;
+}
+
+.floating-card:hover {
+  transform: translateY(-5px);
+}
+
+.card-thumb img {
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.card-info h4 {
+  font-size: 0.9rem;
+  margin-bottom: 2px;
+}
+
+.card-info p {
+  font-size: 0.75rem;
+  opacity: 0.85;
+}
+
+/* Indikator Titik (Dots Slider) */
+.slider-dots {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: background-color 0.3s ease, width 0.3s ease;
+}
+
+.dot.active {
+  background: #ffffff;
+  width: 25px;
+  border-radius: 10px;
+}
+
+/* ==========================================
+   5. KONTEN UTAMA & MODAL POP-UP
+   ========================================== */
+.container {
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.card-section {
+  background-color: var(--card-bg);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+}
+
+.card-section h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.momen-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+}
+
+.momen-card {
+  padding: 18px;
+  border-left: 4px solid var(--accent-color);
+  background: rgba(0, 0, 0, 0.02);
+  border-radius: 0 10px 10px 0;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.photo-frame img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* Modal Pop-up */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 200;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.modal-content {
+  background: var(--card-bg);
+  padding: 25px;
+  border-radius: 20px;
+  max-width: 480px;
+  width: 100%;
+  position: relative;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.couple-photo {
+  width: 100%;
+  border-radius: 12px;
+  margin: 15px 0;
+}
+
+/* Partikel Hati Melayang */
+.heart-particle {
+  position: fixed;
+  font-size: 20px;
+  pointer-events: none;
+  animation: floatUp 4s linear forwards;
+  z-index: 150;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+}
+
+/* ==========================================
+   6. RESPONSIVE DESIGN (HP & TABLET)
+   ========================================== */
+@media screen and (max-width: 768px) {
+  .hero-title { font-size: 2.2rem; }
+  .floating-card { display: none; } /* Menyembunyikan kartu di HP agar tampilan tetap bersih */
+  .hero-section { padding: 0 5%; }
+}
+
+@media screen and (max-width: 480px) {
+  .hero-title { font-size: 1.8rem; }
+  .nav-links { display: none; }
+}
