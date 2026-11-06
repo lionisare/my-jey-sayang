@@ -659,49 +659,50 @@
       </div>
     </div>
 
-    <!-- MODAL SURAT UCAPAN PUITIS WITH CONFETTI -->
+    <!-- MODAL SURAT UCAPAN PUITIS WITH CONFETTI (DIPERBAIKI AGAR FOTO UTUH & RESPONSIF) -->
     <div
       id="letterModal"
-      class="fixed inset-0 z-50 hidden bg-black/70 backdrop-blur-md flex items-center justify-center p-4"
+      class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 overflow-y-auto"
     >
       <div
-        class="bg-white dark:bg-neutral-900 border border-gray-200 dark:border-white/20 w-full max-w-xl rounded-2xl p-6 md:p-8 relative shadow-2xl space-y-5 text-gray-800 dark:text-gray-200 my-auto max-h-[90vh] overflow-y-auto transition-colors duration-300"
+        class="bg-white dark:bg-neutral-900 border border-gray-200 dark:border-white/20 w-full max-w-lg rounded-3xl p-5 sm:p-8 relative shadow-2xl space-y-4 text-gray-800 dark:text-gray-200 my-auto max-h-[92vh] overflow-y-auto transition-colors duration-300"
       >
         <button
           onclick="closeLetterModal()"
-          class="absolute top-4 right-4 text-gray-400 hover:text-gray-900 dark:hover:text-white text-2xl font-bold transition-colors"
+          class="absolute top-4 right-4 text-gray-400 hover:text-gray-900 dark:hover:text-white text-2xl font-bold transition-colors z-10"
         >
           &times;
         </button>
 
         <div
-          class="text-center space-y-2 border-b border-gray-200 dark:border-white/10 pb-4"
+          class="text-center space-y-1 border-b border-gray-200 dark:border-white/10 pb-3"
         >
           <span class="text-2xl">💌</span>
           <h2
-            class="text-xl md:text-2xl font-serif italic font-bold text-gray-900 dark:text-white"
+            class="text-lg sm:text-2xl font-serif italic font-bold text-gray-900 dark:text-white"
           >
             Untaian Rasa Untuk My Jey Sayang
           </h2>
           <p
-            class="text-[11px] uppercase tracking-widest text-amber-600 dark:text-amber-300 font-medium"
+            class="text-[10px] sm:text-[11px] uppercase tracking-widest text-amber-600 dark:text-amber-300 font-medium"
           >
             8 November 2026
           </p>
         </div>
 
+        <!-- FOTO DALAM MODAL: Diatur menggunakan object-contain & latar belakang gelap tipis agar kepala dan badan terlihat utuh (tidak terpotong di HP) -->
         <div
-          class="w-full h-52 md:h-60 rounded-xl overflow-hidden shadow-lg border border-gray-200 dark:border-white/10 my-3"
+          class="w-full max-h-[45vh] sm:max-h-[50vh] rounded-2xl overflow-hidden shadow-lg border border-gray-200 dark:border-white/10 bg-black/40 flex items-center justify-center my-2"
         >
           <img
             src="image/foto16.jpg"
             alt="Foto Pacar"
-            class="w-full h-full object-cover"
+            class="w-full h-full max-h-[45vh] sm:max-h-[50vh] object-contain mx-auto"
           />
         </div>
 
         <div
-          class="space-y-4 font-serif text-sm leading-relaxed text-gray-700 dark:text-gray-300 italic"
+          class="space-y-3 font-serif text-xs sm:text-sm leading-relaxed text-gray-700 dark:text-gray-300 italic"
         >
           <p>Bagi Jiwa Yang Paling Ku Cintai & Sayangi</p>
           <p>
@@ -728,7 +729,7 @@
 
         <button
           onclick="closeLetterModal()"
-          class="w-full py-2.5 bg-gray-900 dark:bg-white text-white dark:text-black font-semibold rounded-lg text-xs md:text-sm hover:opacity-90 transition-opacity"
+          class="w-full py-2.5 bg-gray-900 dark:bg-white text-white dark:text-black font-semibold rounded-xl text-xs md:text-sm hover:opacity-90 transition-opacity shadow-md"
         >
           Tutup Surat Cinta ❤️
         </button>
@@ -790,7 +791,7 @@
           class="w-full h-48 rounded-2xl overflow-hidden border border-white/10 my-2"
         >
           <img
-            src="image/foto-spesial.jpg"
+            src="image/foto8.jpg"
             alt="Foto Berdua"
             class="w-full h-full object-cover"
           />
@@ -810,7 +811,7 @@
             sehat, dan bahagia bersama dengan saya ee!
           </p>
           <p class="text-right font-semibold bento-accent-text pt-2">
-            Dengan Cinta,<br />[Namamu]
+            Dengan Cinta,<br />Tibe
           </p>
         </div>
 
